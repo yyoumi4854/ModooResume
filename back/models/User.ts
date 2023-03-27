@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import { Schema, model, Model } from "mongoose";
 
-const userSchema = mongoose.Schema({
+const userSchema = new Schema({
   name: {
     type: String,
     maxlength: 50,
@@ -31,5 +31,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-const User = mongoose.model("User", userSchema);
-module.exports = { User };
+const User = model("User", userSchema);
+
+export { User };

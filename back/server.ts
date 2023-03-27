@@ -1,8 +1,10 @@
 import express from "express";
+import bodyParser from "body-parser";
+
+import { User } from "./models/User";
+import { config } from "./config/key";
+
 const app = express();
-const bodyParser = require("body-parser");
-const config = require("./config/key");
-const { User } = require("./models/User");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,6 +25,8 @@ app.get("/", function (req, res) {
 // 회원가입 라우터
 app.post("/register", async (req, res) => {
   const user = new User(req.body);
+
+  // 여기
   const result = await user
     .save()
     .then(() => {
