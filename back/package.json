@@ -5,15 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node server.ts",
+    "dev": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "minji",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "mongoose": "^7.0.2"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17"
+    "@types/express": "^4.17.17",
+    "nodemon": "^2.0.22"
   }
 }

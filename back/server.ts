@@ -1,26 +1,42 @@
 import express from "express";
 const app = express();
-const port = 5000;
+const bodyParser = require("body-parser");
+const config = require("./config/key");
+const { User } = require("./models/User");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(
-    "mongodb+srv://minji:abcd1234@modooresume.eodr2fw.mongodb.net/?retryWrites=true&w=majority",
-    {
-      // 이걸 안쓰면 에러가 발생
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      // useCreateIndex: true,
-      // useFindAndModify: false,
-      // MongoParseError: usecreateindex, usefindandmodify 옵션은 지원되지 않습니다
-    }
-  )
+  .connect(config.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB Connected..."))
   .catch((err: "empty") => console.log(err));
+
 app.get("/", function (req, res) {
-  res.send("Hello World 바뀌나???");
+  res.send("Hello World");
 });
 
-app.listen(port, () => {
+// 회원가입 라우터
+app.post("/register", async (req, res) => {
+  const user = new User(req.body);
+  const result = await user
+    .save()
+    .then(() => {
+      res.status(200).json({
+        success: true,
+      });
+    })
+    .catch((err: "empty") => {
+      res.json({ success: false, err });
+    });
+
+  return result;
+});
+
+app.listen(5000, () => {
   console.log("server is running!");
 });
