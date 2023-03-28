@@ -26,7 +26,6 @@ app.get("/", function (req, res) {
 app.post("/register", async (req, res) => {
   const user = new User(req.body);
 
-  // 여기
   const result = await user
     .save()
     .then(() => {

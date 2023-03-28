@@ -1,4 +1,7 @@
 import { Schema, model, Model } from "mongoose";
+import bcrypt from "bcrypt";
+
+const saltRounds = 10;
 
 const userSchema = new Schema({
   name: {
@@ -31,6 +34,23 @@ const userSchema = new Schema({
   },
 });
 
-const User = model("User", userSchema);
+userSchema.pre("save", function (next) {
+  const user = this;
 
-export { User };
+  // 비밀번호를 변환될때만 bcrypt발동
+  if (user.isModified("password")) {
+    // 비밀번호를 암호화 시킨다.
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+      if (err) return next(err);
+
+      if (!user.password) return null;
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        if (err) return next(err);
+        user.password = hash;
+        next();
+      });
+    });
+  }
+});
+
+export const User = model("User", userSchema);
