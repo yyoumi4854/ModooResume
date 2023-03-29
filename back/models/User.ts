@@ -1,5 +1,6 @@
 import { Schema, model, Model } from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const saltRounds = 10;
 
@@ -50,7 +51,32 @@ userSchema.pre("save", function (next) {
         next();
       });
     });
+  } else {
+    next();
   }
 });
+
+userSchema.methods.comparePassword = function (plainPassword: string, cb: any) {
+  bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
+};
+
+userSchema.methods.generateToken = function (cb: any) {
+  const user = this;
+  // jsonwebtoken을 사용해서 토큰 생성
+  const token = jwt.sign(user._id.toHexString(), "createToken");
+
+  user.token = token;
+  user
+    .save()
+    .then(() => {
+      cb(null, user);
+    })
+    .catch((err: "empty") => {
+      return cb();
+    });
+};
 
 export const User = model("User", userSchema);
