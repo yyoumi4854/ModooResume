@@ -66,7 +66,7 @@ userSchema.methods.comparePassword = function (plainPassword: string, cb: any) {
 userSchema.methods.generateToken = function (cb: any) {
   const user = this;
   // jsonwebtoken을 사용해서 토큰 생성
-  const token = jwt.sign(user._id.toHexString(), "createToken");
+  const token = jwt.sign(user._id.toHexString(), "secretToken");
 
   user.token = token;
   user
@@ -77,6 +77,26 @@ userSchema.methods.generateToken = function (cb: any) {
     .catch((err: "empty") => {
       return cb();
     });
+};
+
+userSchema.statics.findByToken = function (token, cb) {
+  const user = this;
+
+  // 토큰을 decode 한다.
+  // decode는 user._id가 나온다.
+  jwt.verify(token, "secretToken", function (err: any, decoded: any) {
+    // 유저 아이디를 이용해서 유저를 찾은 다음에
+    // 클라이언트에서 가져온 token과 DB에 보관된 토큰이 일치하는지 확인
+
+    user
+      .findOne({ _id: decoded, token: token })
+      .then((user: any) => {
+        return cb(null, user);
+      })
+      .catch((err: "empty") => {
+        return cb(err);
+      });
+  });
 };
 
 export const User = model("User", userSchema);

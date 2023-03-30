@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 
 import { User } from "./models/User";
 import { config } from "./config/key";
+import { auth } from "./middleware/auth";
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.get("/", function (req, res) {
 });
 
 // 회원가입 라우터
-app.post("/register", async (req, res) => {
+app.post("/api/users/register", async (req, res) => {
   const user = new User(req.body);
 
   const result = await user
@@ -42,7 +43,7 @@ app.post("/register", async (req, res) => {
   return result;
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/users/login", (req, res) => {
   const { email, password } = req.body;
 
   // 1. 요청된 이메일을 DB에 있는지 찾기
@@ -77,6 +78,33 @@ app.post("/login", (req, res) => {
     })
     .catch((err) => {
       return res.status(400).send(err);
+    });
+});
+
+app.get("/api/users/auth", auth, (req: any, res) => {
+  // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True라는 말
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image,
+  });
+});
+
+app.get("/api/users/logout", auth, (req: any, res) => {
+  // 로그아웃 하려는 유저를 데이터베이스에서 찾아서 데이터를 업데이트
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" })
+    .then(() => {
+      return res.status(200).send({
+        success: true,
+      });
+    })
+    .catch((err: "empty") => {
+      return res.json({ success: false, err });
     });
 });
 
