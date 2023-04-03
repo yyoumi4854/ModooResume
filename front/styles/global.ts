@@ -13,6 +13,11 @@ const Global = createGlobalStyle`
     letter-spacing: -0.05em;
     color: ${({ theme }) => theme.colors.blackText};
   }
+
+  a{
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.blackText};
+  }
 `;
 
 export default Global;

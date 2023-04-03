@@ -1,11 +1,12 @@
+import Head from "next/head";
 import { AppProps } from "next/app";
+import { Noto_Sans_KR } from "next/font/google";
 import { ThemeProvider } from "styled-components";
-import Global from "../styles/global";
+
+import Header from "../components/layout/header/Header";
 
 import theme from "../styles/theme";
-
-import { Noto_Sans_KR } from "next/font/google";
-import Head from "next/head";
+import Global from "../styles/global";
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ const _app = ({ Component }: AppProps) => {
 
       <main className={notoSansKr.className}>
         <ThemeProvider theme={theme}>
+          <Header />
           <Global />
           <Component />
         </ThemeProvider>
