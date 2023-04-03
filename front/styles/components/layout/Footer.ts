@@ -1,19 +1,32 @@
 import styled from "styled-components";
-import { inner } from "../common/css";
+import { inner } from "../../common/css";
 
 export const FooterCon = styled.footer`
   border-top: 1px solid ${({ theme }) => theme.colors.grayBd};
+  background: #fff;
 `;
 
 export const TopCon = styled.div`
   display: flex;
+  align-items: center;
   gap: 40px;
-  padding: 18px 24px;
+  height: 48px;
+  ${inner}
 
   h1 {
     img {
       width: auto;
       height: 16px;
+    }
+  }
+
+  ${({ theme }) => theme.device.mobile} {
+    display: block;
+    height: auto;
+    padding-top: 24px;
+
+    h1 {
+      text-align: center;
     }
   }
 `;
@@ -25,16 +38,27 @@ export const ListWrap = styled.ul`
   li:last-of-type {
     font-weight: 500;
   }
+
+  ${({ theme }) => theme.device.mobile} {
+    ${({ theme }) => theme.common.flexCenter}
+    margin-top: 32px;
+  }
 `;
 
 export const BottomCon = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.grayBd};
-  ${inner}
-  padding-top: 24px;
+  padding: 24px;
+  padding-bottom: 80px;
 
   p {
     font-weight: 300;
     font-size: ${({ theme }) => theme.fontSizes.small};
     color: ${({ theme }) => theme.colors.grayText};
+  }
+
+  ${({ theme }) => theme.device.mobile} {
+    padding: 40px 24px 80px 24px;
+    border-top: 0;
+    text-align: center;
   }
 `;

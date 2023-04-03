@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import * as styled from "../../styles/layout/Footer";
+import * as styled from "../../styles/components/layout/Footer";
 
 import logo from "../../public/logo.svg";
 
@@ -19,7 +19,7 @@ const Footer = () => {
       </styled.TopCon>
 
       <styled.BottomCon>
-        <p>© 2023. modooRe all rights reserved.</p>
+        <p>© 2023. modooResume all rights reserved.</p>
       </styled.BottomCon>
     </styled.FooterCon>
   );
