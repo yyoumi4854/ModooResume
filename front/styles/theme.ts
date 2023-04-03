@@ -12,6 +12,7 @@ const colors = {
   // gray
   grayBg: "#F8F8F8",
   grayBd: "#E1E2E3",
+  grayText: "#767676",
 
   // black
   blackText: "#333",
