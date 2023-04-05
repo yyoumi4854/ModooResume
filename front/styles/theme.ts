@@ -10,12 +10,21 @@ const colors = {
   main: "#FF6678",
 
   // gray
-  grayBg: "#F8F8F8",
-  grayBd: "#E1E2E3",
   grayText: "#767676",
 
-  // black
-  blackText: "#333",
+  lightTheme: {
+    text: "#333",
+    bg: "#fff",
+    lightBg: "#F8F8F8",
+    border: "#E1E2E3",
+  },
+
+  darkTheme: {
+    text: "#E8E8E8",
+    bg: "#1e1f21",
+    lightBg: "#353638", // 292a2d
+    border: "#292a2d",
+  },
 };
 
 const fontSizes = {

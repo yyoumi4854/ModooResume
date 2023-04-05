@@ -1,12 +1,15 @@
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { Noto_Sans_KR } from "next/font/google";
 import { ThemeProvider } from "styled-components";
 
 import Header from "../components/layout/header/Header";
+import Float from "../components/layout/Float";
 
 import theme from "../styles/theme";
 import Global from "../styles/global";
+import { ThemeContext } from "../context/themeContext";
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
@@ -14,6 +17,10 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 const _app = ({ Component }: AppProps) => {
+  const derkMode =
+    typeof window !== "undefined" ? localStorage.getItem("isDark") : null;
+  const [isDark, setIsDark] = useState(derkMode ? true : false);
+
   return (
     <>
       <Head>
@@ -23,11 +30,14 @@ const _app = ({ Component }: AppProps) => {
       </Head>
 
       <main className={notoSansKr.className}>
-        <ThemeProvider theme={theme}>
-          <Header />
-          <Global />
-          <Component />
-        </ThemeProvider>
+        <ThemeContext.Provider value={{ isDark, setIsDark }}>
+          <ThemeProvider theme={theme}>
+            <Global mode={isDark ? "darkTheme" : "lightTheme"} />
+            <Header />
+            <Float />
+            <Component />
+          </ThemeProvider>
+        </ThemeContext.Provider>
       </main>
     </>
   );

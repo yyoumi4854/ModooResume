@@ -1,22 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
+import { useContext } from "react";
 
 import Nav from "./Nav";
 import User from "./User";
+import Logo from "../../common/Logo";
+import { ThemeContext } from "../../../context/themeContext";
+import { IsDark } from "../../../context/type";
 
 import * as styled from "../../../styles/components/layout/header/Header";
 
-import logo from "../../../public/logo.svg";
-
 const Header = () => {
+  const { isDark } = useContext(ThemeContext) as IsDark;
+
   return (
-    <styled.HeaderCon>
+    <styled.HeaderCon mode={isDark ? "darkTheme" : "lightTheme"}>
       <styled.TopCon>
-        <h1>
-          <Link href="/">
-            <Image src={logo} alt="모두의 이력서 로고" />
-          </Link>
-        </h1>
+        <Logo />
         <User device={"mobile"} />
       </styled.TopCon>
 

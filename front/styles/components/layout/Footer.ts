@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { inner } from "../../common/css";
 
-export const FooterCon = styled.footer`
-  border-top: 1px solid ${({ theme }) => theme.colors.grayBd};
-  background: #fff;
+export const FooterCon = styled.footer<{ mode: "darkTheme" | "lightTheme" }>`
+  border-top: 1px solid ${({ theme, mode }) => theme.colors[mode].border};
+  background: ${({ theme, mode }) => theme.colors[mode].bg};
 `;
 
 export const TopCon = styled.div`
@@ -45,8 +45,8 @@ export const ListWrap = styled.ul`
   }
 `;
 
-export const BottomCon = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.grayBd};
+export const BottomCon = styled.div<{ mode: "darkTheme" | "lightTheme" }>`
+  border-top: 1px solid ${({ theme, mode }) => theme.colors[mode].border};
   padding: 24px;
   padding-bottom: 80px;
 

@@ -1,20 +1,30 @@
+import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+import { ThemeContext } from "../../../context/themeContext";
+import { IsDark } from "../../../context/type";
 
 import * as styled from "../../../styles/components/layout/header/Nav";
 
 const Nav = () => {
   const router = useRouter();
-  // console.log(router);
-  // router.pathname
+
+  const { isDark } = useContext(ThemeContext) as IsDark;
 
   return (
     <styled.NavCon>
       <ul>
-        <styled.Navli pathname={router.pathname === "/"}>
+        <styled.Navli
+          pathname={router.pathname === "/"}
+          mode={isDark ? "darkTheme" : "lightTheme"}
+        >
           <Link href="/">발견</Link>
         </styled.Navli>
-        <styled.Navli pathname={router.pathname === "/Resume"}>
+        <styled.Navli
+          pathname={router.pathname === "/Resume"}
+          mode={isDark ? "darkTheme" : "lightTheme"}
+        >
           <Link href="/Resume">이력서</Link>
         </styled.Navli>
       </ul>

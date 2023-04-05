@@ -8,7 +8,10 @@ export const NavCon = styled.nav`
   }
 `;
 
-export const Navli = styled.li<{ pathname: boolean }>`
+export const Navli = styled.li<{
+  pathname: boolean;
+  mode: "darkTheme" | "lightTheme";
+}>`
   position: relative;
   padding: 20px 0;
 
@@ -19,8 +22,8 @@ export const Navli = styled.li<{ pathname: boolean }>`
     bottom: 0;
     width: 24px;
     height: 4px;
-    background: ${({ pathname, theme }) =>
-      pathname ? theme.colors.blackText : "transparent"};
+    background: ${({ pathname, mode, theme }) =>
+      pathname ? theme.colors[mode].text : "transparent"};
   }
 
   a {

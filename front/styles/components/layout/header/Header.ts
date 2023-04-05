@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { inner } from "../../../common/css";
 
-export const HeaderCon = styled.header`
+export const HeaderCon = styled.header<{ mode: "lightTheme" | "darkTheme" }>`
   display: flex;
   align-items: center;
   gap: 40px;
@@ -9,8 +9,8 @@ export const HeaderCon = styled.header`
   top: 0;
   left: 0;
   ${inner}
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grayBd};
-  background: #fff;
+  border-bottom: 1px solid ${({ theme, mode }) => theme.colors[mode].border};
+  background: ${({ theme, mode }) => theme.colors[mode].bg};
 
   ${({ theme }) => theme.device.mobile} {
     display: block;
@@ -20,6 +20,7 @@ export const HeaderCon = styled.header`
       img {
         width: auto;
         height: 18px;
+        fill: red;
       }
     }
   }

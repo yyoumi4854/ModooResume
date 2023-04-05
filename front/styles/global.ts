@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 
-const Global = createGlobalStyle`
+const Global = createGlobalStyle<{ mode: "lightTheme" | "darkTheme" }>`
   ${reset}
 
   *{
@@ -9,14 +9,24 @@ const Global = createGlobalStyle`
     outline: none;
   }
 
-  html, input, select, textarea{
+  body, input, select, textarea{
+    background: ${({ theme, mode }) => theme.colors[mode].bg};
+    color: ${({ theme, mode }) => theme.colors[mode].text};
     letter-spacing: -0.05em;
-    color: ${({ theme }) => theme.colors.blackText};
   }
 
   a{
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.blackText};
+    color: ${({ theme, mode }) => theme.colors[mode].text};
+  }
+
+  button{
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: ${({ theme, mode }) => theme.colors[mode].text};
+    font-size: ${({ theme }) => theme.fontSizes.basicsDesktop};
+    cursor: pointer;
   }
 `;
 

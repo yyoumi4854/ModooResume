@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const UserList = styled.ul<{ device: string }>`
+export const UserList = styled.ul<{
+  device: string;
+  mode: "darkTheme" | "lightTheme";
+}>`
   display: ${({ device }) => (device === "pc" ? "flex" : "none")};
 
   li {
@@ -10,7 +13,7 @@ export const UserList = styled.ul<{ device: string }>`
   }
 
   li:nth-of-type(2n) {
-    border-left: 1px solid ${({ theme }) => theme.colors.grayBd};
+    border-left: 1px solid ${({ theme, mode }) => theme.colors[mode].border};
   }
 
   a {

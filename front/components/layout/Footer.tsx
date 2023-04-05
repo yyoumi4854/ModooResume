@@ -1,16 +1,19 @@
-import Image from "next/image";
+import { useContext } from "react";
+
+import { ThemeContext } from "../../context/themeContext";
+import { IsDark } from "../../context/type";
+
+import Logo from "../common/Logo";
 
 import * as styled from "../../styles/components/layout/Footer";
 
-import logo from "../../public/logo.svg";
-
 const Footer = () => {
+  const { isDark } = useContext(ThemeContext) as IsDark;
+
   return (
-    <styled.FooterCon>
+    <styled.FooterCon mode={isDark ? "darkTheme" : "lightTheme"}>
       <styled.TopCon>
-        <h1>
-          <Image src={logo} alt="모두의 이력서 로고" />
-        </h1>
+        <Logo />
 
         <styled.ListWrap>
           <li>이용약관</li>
@@ -18,7 +21,7 @@ const Footer = () => {
         </styled.ListWrap>
       </styled.TopCon>
 
-      <styled.BottomCon>
+      <styled.BottomCon mode={isDark ? "darkTheme" : "lightTheme"}>
         <p>© 2023. modooResume all rights reserved.</p>
       </styled.BottomCon>
     </styled.FooterCon>
