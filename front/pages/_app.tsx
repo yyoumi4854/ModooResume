@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { Noto_Sans_KR } from "next/font/google";
+import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 
 import Header from "../components/layout/header/Header";
@@ -17,6 +18,8 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 const _app = ({ Component }: AppProps) => {
+  const router = useRouter();
+
   const derkMode =
     typeof window !== "undefined" ? localStorage.getItem("isDark") : null;
   const [isDark, setIsDark] = useState(derkMode ? true : false);
@@ -33,7 +36,7 @@ const _app = ({ Component }: AppProps) => {
         <ThemeContext.Provider value={{ isDark, setIsDark }}>
           <ThemeProvider theme={theme}>
             <Global mode={isDark ? "darkTheme" : "lightTheme"} />
-            <Header />
+            {router.query.header !== "N" && <Header />}
             <Float />
             <Component />
           </ThemeProvider>

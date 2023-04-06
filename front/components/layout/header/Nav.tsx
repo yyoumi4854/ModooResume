@@ -25,7 +25,9 @@ const Nav = () => {
           pathname={router.pathname === "/Resume"}
           mode={isDark ? "darkTheme" : "lightTheme"}
         >
-          <Link href="/Resume">이력서</Link>
+          <Link href="/Resume" as="resume">
+            이력서
+          </Link>
         </styled.Navli>
       </ul>
     </styled.NavCon>

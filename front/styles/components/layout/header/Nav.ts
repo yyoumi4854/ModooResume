@@ -27,6 +27,7 @@ export const Navli = styled.li<{
   }
 
   a {
+    font-weight: 700;
     transition: all 0.3s;
 
     &:hover {

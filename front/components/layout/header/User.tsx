@@ -16,10 +16,17 @@ const User = ({ device }: Props) => {
   return (
     <Styled.UserList device={device} mode={isDark ? "darkTheme" : "lightTheme"}>
       <li>
-        <Link href="/Login">로그인</Link>
+        <Link
+          href={{ pathname: "/Login", query: { header: "N" } }}
+          as="/auth/login"
+        >
+          로그인
+        </Link>
       </li>
       <li>
-        <Link href="/Register">회원가입</Link>
+        <Link href="/Register" as="/auth/register">
+          회원가입
+        </Link>
       </li>
     </Styled.UserList>
   );
