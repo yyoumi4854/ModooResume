@@ -7,7 +7,8 @@ export type deviceType = typeof device;
 
 const colors = {
   // main
-  main: "#FF6678",
+  main: "#FF6678", // 60%
+  lightMain: "#FF99A5", // 40%
 
   // gray
   grayText: "#767676",
@@ -22,8 +23,8 @@ const colors = {
   darkTheme: {
     text: "#E8E8E8",
     bg: "#1e1f21",
-    lightBg: "#353638", // 292a2d
-    border: "#292a2d",
+    lightBg: "#292a2d", // 292a2d
+    border: "#535457",
   },
 };
 
@@ -82,7 +83,6 @@ const common = {
 const device = {
   desktop: `@media only screen and (max-width: 1060px)`,
   mobile: `@media only screen and (max-width: 768px)`,
-  userForm: `@media only screen and (max-width: 448px)`,
 };
 
 const theme: DefaultTheme = {

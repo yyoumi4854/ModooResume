@@ -11,5 +11,3 @@ export const SpinLeft = keyframes`
       transform: rotate(-360deg);
   }
 `;
-
-// animation: ${LoadingSpin} 3s;

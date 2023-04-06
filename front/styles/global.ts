@@ -10,6 +10,8 @@ const Global = createGlobalStyle<{ mode: "lightTheme" | "darkTheme" }>`
   }
 
   body, input, select, textarea{
+    font-size: ${({ theme }) => theme.fontSizes.basicsDesktop};
+
     background: ${({ theme, mode }) => theme.colors[mode].bg};
     color: ${({ theme, mode }) => theme.colors[mode].text};
     letter-spacing: -0.05em;
