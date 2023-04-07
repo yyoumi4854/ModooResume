@@ -23,6 +23,7 @@ const _app = ({ Component }: AppProps) => {
   const derkMode =
     typeof window !== "undefined" ? localStorage.getItem("isDark") : null;
   const [isDark, setIsDark] = useState(derkMode ? true : false);
+  const mode = isDark ? "darkTheme" : "lightTheme";
 
   return (
     <>
@@ -35,7 +36,7 @@ const _app = ({ Component }: AppProps) => {
       <main className={notoSansKr.className}>
         <ThemeContext.Provider value={{ isDark, setIsDark }}>
           <ThemeProvider theme={theme}>
-            <Global mode={isDark ? "darkTheme" : "lightTheme"} />
+            <Global mode={mode} />
             {router.query.header !== "N" && <Header />}
             <Float />
             <Component />

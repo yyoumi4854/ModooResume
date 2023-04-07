@@ -10,9 +10,10 @@ import * as styled from "../../../styles/components/layout/header/Header";
 
 const Header = () => {
   const { isDark } = useContext(ThemeContext) as IsDark;
+  const mode = isDark ? "darkTheme" : "lightTheme";
 
   return (
-    <styled.HeaderCon mode={isDark ? "darkTheme" : "lightTheme"}>
+    <styled.HeaderCon mode={mode}>
       <styled.TopCon>
         <Logo />
         <User device={"mobile"} />

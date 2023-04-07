@@ -11,20 +11,15 @@ const Nav = () => {
   const router = useRouter();
 
   const { isDark } = useContext(ThemeContext) as IsDark;
+  const mode = isDark ? "darkTheme" : "lightTheme";
 
   return (
     <styled.NavCon>
       <ul>
-        <styled.Navli
-          pathname={router.pathname === "/"}
-          mode={isDark ? "darkTheme" : "lightTheme"}
-        >
+        <styled.Navli pathname={router.pathname === "/"} mode={mode}>
           <Link href="/">발견</Link>
         </styled.Navli>
-        <styled.Navli
-          pathname={router.pathname === "/Resume"}
-          mode={isDark ? "darkTheme" : "lightTheme"}
-        >
+        <styled.Navli pathname={router.pathname === "/Resume"} mode={mode}>
           <Link href="/Resume" as="resume">
             이력서
           </Link>

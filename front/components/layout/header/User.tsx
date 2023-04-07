@@ -12,9 +12,10 @@ interface Props {
 
 const User = ({ device }: Props) => {
   const { isDark } = useContext(ThemeContext) as IsDark;
+  const mode = isDark ? "darkTheme" : "lightTheme";
 
   return (
-    <Styled.UserList device={device} mode={isDark ? "darkTheme" : "lightTheme"}>
+    <Styled.UserList device={device} mode={mode}>
       <li>
         <Link
           href={{ pathname: "/Login", query: { header: "N" } }}

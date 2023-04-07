@@ -9,9 +9,10 @@ import * as styled from "../../styles/components/layout/Footer";
 
 const Footer = () => {
   const { isDark } = useContext(ThemeContext) as IsDark;
+  const mode = isDark ? "darkTheme" : "lightTheme";
 
   return (
-    <styled.FooterCon mode={isDark ? "darkTheme" : "lightTheme"}>
+    <styled.FooterCon mode={mode}>
       <styled.TopCon>
         <Logo />
 
@@ -21,7 +22,7 @@ const Footer = () => {
         </styled.ListWrap>
       </styled.TopCon>
 
-      <styled.BottomCon mode={isDark ? "darkTheme" : "lightTheme"}>
+      <styled.BottomCon mode={mode}>
         <p>© 2023. modooResume all rights reserved.</p>
       </styled.BottomCon>
     </styled.FooterCon>
