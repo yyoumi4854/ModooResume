@@ -52,7 +52,7 @@ export const BottomCon = styled.div<{ mode: "darkTheme" | "lightTheme" }>`
 
   p {
     font-weight: 300;
-    font-size: ${({ theme }) => theme.fontSizes.small};
+    font-size: ${({ theme }) => theme.fonts.size.small};
     color: ${({ theme }) => theme.colors.grayText};
   }
 

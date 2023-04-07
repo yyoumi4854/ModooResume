@@ -9,7 +9,7 @@ export const UserList = styled.ul<{
   li {
     padding: 0 8px;
     font-weight: 300;
-    font-size: ${({ theme }) => theme.fontSizes.small};
+    font-size: ${({ theme }) => theme.fonts.size.small};
   }
 
   li:nth-of-type(2n) {
