@@ -10,8 +10,8 @@ const Global = createGlobalStyle<{ mode: "lightTheme" | "darkTheme" }>`
   }
 
   body, input, select, textarea{
-    font-size: ${({ theme }) => theme.fontSizes.basicsDesktop};
-
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: ${({ theme }) => theme.fonts.size.basicsDesktop};
     background: ${({ theme, mode }) => theme.colors[mode].bg};
     color: ${({ theme, mode }) => theme.colors[mode].text};
     letter-spacing: -0.05em;
@@ -27,7 +27,7 @@ const Global = createGlobalStyle<{ mode: "lightTheme" | "darkTheme" }>`
     background: transparent;
     border: 0;
     color: ${({ theme, mode }) => theme.colors[mode].text};
-    font-size: ${({ theme }) => theme.fontSizes.basicsDesktop};
+    font-size: ${({ theme }) => theme.fonts.size.basicsDesktop};
     cursor: pointer;
   }
 `;
