@@ -11,7 +11,7 @@ import { ChevronUp } from "@styled-icons/boxicons-regular";
 const Float = () => {
   const { isDark, setIsDark } = useContext(ThemeContext) as IsDark;
 
-  const handlerIsDarkClick = () => {
+  const onIsDarkHandler = () => {
     if (isDark) {
       localStorage.removeItem("isDark");
     } else {
@@ -22,9 +22,7 @@ const Float = () => {
 
   return (
     <styled.FloatCon mode={isDark ? "darkTheme" : "lightTheme"}>
-      <button onClick={handlerIsDarkClick}>
-        {isDark ? <Sun /> : <Moon />}
-      </button>
+      <button onClick={onIsDarkHandler}>{isDark ? <Sun /> : <Moon />}</button>
       <button>
         <ChevronUp />
       </button>

@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
-export const UserList = styled.ul<{
+export const UserCon = styled.div<{
   device: string;
-  mode: "darkTheme" | "lightTheme";
 }>`
   display: ${({ device }) => (device === "pc" ? "flex" : "none")};
 
+  ${({ theme }) => theme.device.mobile} {
+    display: ${({ device }) => (device === "pc" ? "none" : "flex")};
+  }
+`;
+
+export const profile = styled.img``;
+
+export const UserList = styled.ul<{ mode: "darkTheme" | "lightTheme" }>`
   li {
     padding: 0 8px;
     font-weight: 300;
@@ -22,9 +29,5 @@ export const UserList = styled.ul<{
     &:hover {
       color: ${({ theme }) => theme.colors.main};
     }
-  }
-
-  ${({ theme }) => theme.device.mobile} {
-    display: ${({ device }) => (device === "pc" ? "none" : "flex")};
   }
 `;

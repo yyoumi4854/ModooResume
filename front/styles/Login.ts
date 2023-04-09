@@ -40,7 +40,7 @@ export const InputBox = styled.div<{ mode: "darkTheme" | "lightTheme" }>`
 
   p {
     font-weight: 700;
-    font-size: ${({ theme }) => theme.fontSizes.small};
+    font-size: ${({ theme }) => theme.fonts.size.small};
   }
 
   input {
@@ -52,7 +52,7 @@ export const InputBox = styled.div<{ mode: "darkTheme" | "lightTheme" }>`
     background: ${({ theme, mode }) => theme.colors[mode].lightBg};
 
     &:focus {
-      border: 1px solid ${({ theme }) => theme.colors.main};
+      border: 1px solid ${({ theme }) => theme.colors.lightMain};
     }
   }
 `;
@@ -79,7 +79,7 @@ export const RegisterBox = styled.div`
     gap: 16px;
 
     span {
-      font-size: ${({ theme }) => theme.fontSizes.small};
+      font-size: ${({ theme }) => theme.fonts.size.small};
       color: ${({ theme }) => theme.colors.grayText};
 
       &:last-of-type {
@@ -88,4 +88,13 @@ export const RegisterBox = styled.div`
       }
     }
   }
+`;
+
+export const WarningMsg = styled.span`
+  display: block;
+  margin-top: 12px;
+  font-weight: 300;
+  font-size: ${({ theme }) => theme.fonts.size.small};
+  line-height: ${({ theme }) => theme.fonts.lineHeight.base};
+  color: ${({ theme }) => theme.colors.warning};
 `;

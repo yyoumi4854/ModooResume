@@ -1,7 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
 export type colorsType = typeof colors;
-export type fontSizesType = typeof fontSizes;
+export type fontsType = typeof fonts;
 export type commonType = typeof common;
 export type deviceType = typeof device;
 
@@ -12,6 +12,8 @@ const colors = {
 
   // gray
   grayText: "#767676",
+
+  warning: "#f21724",
 
   lightTheme: {
     text: "#333",
@@ -28,17 +30,17 @@ const colors = {
   },
 };
 
-const fontSizes = {
-  basicsDesktop: "15px",
-  title: "1.5rem", // 22.5px
-  medium: "1.2rem", // 24px
-  small: ".86rem", // 12px
+const fonts = {
+  size: {
+    basicsDesktop: "15px",
+    title: "1.5rem", // 22.5px
+    medium: "1.2rem", // 24px
+    small: ".86rem", // 12px
+  },
 
-  // 15
-  // 1.6 = 24
-  // 1.5 = 22.5
-  // 1.2 = 18
-  // .8 = 12
+  lineHeight: {
+    base: 1.5,
+  },
 };
 
 const common = {
@@ -87,7 +89,7 @@ const device = {
 
 const theme: DefaultTheme = {
   colors,
-  fontSizes,
+  fonts,
   device,
   common,
 };

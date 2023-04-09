@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import { User } from "./models/User";
 import { config } from "./config/key";
@@ -11,6 +12,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser()); // 쿠키파서 사용 가능
+app.use(cors());
 
 const mongoose = require("mongoose");
 mongoose
@@ -22,7 +24,7 @@ mongoose
   .catch((err: "empty") => console.log(err));
 
 app.get("/", function (req, res) {
-  res.send("Hello World");
+  res.send("모두의 이력서 서버입니다~");
 });
 
 // 회원가입 라우터
@@ -43,6 +45,7 @@ app.post("/api/users/register", async (req, res) => {
   return result;
 });
 
+// 로그인
 app.post("/api/users/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -72,7 +75,13 @@ app.post("/api/users/login", (req, res) => {
           res
             .cookie("hasVisited", user.token)
             .status(200)
-            .json({ loginSuccess: true, userId: user._id });
+            .json({
+              loginSuccess: true,
+              data: {
+                userId: user._id,
+                nickName: user.nickName,
+              },
+            });
         });
       });
     })
@@ -85,12 +94,13 @@ app.get("/api/users/auth", auth, (req: any, res) => {
   // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True라는 말
   res.status(200).json({
     _id: req.user._id,
-    isAdmin: req.user.role === 0 ? false : true,
+    // isAdmin: req.user.role === 0 ? false : true,
     isAuth: true,
     email: req.user.email,
     name: req.user.name,
+    nickName: req.user.nickName,
     lastname: req.user.lastname,
-    role: req.user.role,
+    // role: req.user.role,
     image: req.user.image,
   });
 });

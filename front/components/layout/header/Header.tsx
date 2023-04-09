@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 import Nav from "./Nav";
+import Auth from "./User";
 import User from "./User";
 import Logo from "../../common/Logo";
 import { ThemeContext } from "../../../context/themeContext";

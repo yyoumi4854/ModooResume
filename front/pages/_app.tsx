@@ -3,6 +3,9 @@ import Head from "next/head";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { RecoilRoot } from "recoil";
 
 import Header from "../components/layout/header/Header";
 import Float from "../components/layout/Float";
@@ -13,6 +16,8 @@ import { ThemeContext } from "../context/themeContext";
 
 const _app = ({ Component }: AppProps) => {
   const router = useRouter();
+
+  const queryClient = new QueryClient();
 
   const derkMode =
     typeof window !== "undefined" ? localStorage.getItem("isDark") : null;
@@ -34,9 +39,14 @@ const _app = ({ Component }: AppProps) => {
       <ThemeContext.Provider value={{ isDark, setIsDark }}>
         <ThemeProvider theme={theme}>
           <Global mode={mode} />
-          {router.query.header !== "N" && <Header />}
-          <Float />
-          <Component />
+          <RecoilRoot>
+            <QueryClientProvider client={queryClient}>
+              <ReactQueryDevtools initialIsOpen={false} />
+              {router.query.header !== "N" && <Header />}
+              <Float />
+              <Component />
+            </QueryClientProvider>
+          </RecoilRoot>
         </ThemeProvider>
       </ThemeContext.Provider>
     </>
