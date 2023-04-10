@@ -13,6 +13,8 @@ export const UserCon = styled.div<{
 export const profile = styled.img``;
 
 export const UserList = styled.ul<{ mode: "darkTheme" | "lightTheme" }>`
+  ${({ theme }) => theme.common.flexCenter}
+
   li {
     padding: 0 8px;
     font-weight: 300;

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRecoilValue } from "recoil";
 
 import { ThemeContext } from "../../../context/themeContext";
@@ -21,7 +22,9 @@ const User = ({ device }: Props) => {
   return (
     <Styled.UserCon device={device}>
       {user ? (
-        <img src="" alt={user.nickName} />
+        <>
+          <Image src="" alt={user.nickName} />
+        </>
       ) : (
         <Styled.UserList mode={mode}>
           <li>
