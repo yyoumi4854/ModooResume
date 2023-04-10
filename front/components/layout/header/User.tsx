@@ -36,7 +36,10 @@ const User = ({ device }: Props) => {
             </Link>
           </li>
           <li>
-            <Link href="/Register" as="/auth/register">
+            <Link
+              href={{ pathname: "/Register", query: { header: "N" } }}
+              as="/auth/register"
+            >
               회원가입
             </Link>
           </li>

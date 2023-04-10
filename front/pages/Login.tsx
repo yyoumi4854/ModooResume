@@ -11,7 +11,8 @@ import { validateEmail, validatePassword } from "../utils/regExp";
 import { login } from "../api/user";
 import { userAtom } from "../recoil/user";
 
-import * as styled from "../styles/Login";
+import * as authStyled from "../styles/components/Auth";
+import * as styled from "../styles/pages/Login";
 
 const Login = () => {
   const setUser = useSetRecoilState(userAtom);
@@ -26,14 +27,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const mutation = useMutation({
-    mutationFn: login,
-    onSuccess: (data) => {
-      setUser(data.data);
-      router.replace("/");
-    },
-  });
-
   const onEmailHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target as any;
     setEmail(value);
@@ -43,6 +36,14 @@ const Login = () => {
     const { value } = e.target as any;
     setPassword(value);
   };
+
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      setUser(data.data);
+      router.replace("/");
+    },
+  });
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 리프레시 막기
@@ -60,12 +61,15 @@ const Login = () => {
   };
 
   return (
-    <styled.LoginWrap mode={mode}>
-      <styled.LoginCon mode={mode}>
-        <Logo />
-        <styled.LoginformWrap>
+    <authStyled.AuthWrap mode={mode}>
+      <authStyled.AuthCon mode={mode}>
+        <styled.LogoWrap>
+          <Logo />
+        </styled.LogoWrap>
+
+        <authStyled.LoginformWrap>
           <form onSubmit={onSubmitHandler}>
-            <styled.InputBox mode={mode}>
+            <authStyled.InputBox mode={mode}>
               <p>이메일</p>
               <input
                 autoFocus
@@ -73,32 +77,32 @@ const Login = () => {
                 value={email}
                 onChange={onEmailHandler}
               />
-            </styled.InputBox>
+            </authStyled.InputBox>
 
-            <styled.InputBox mode={mode}>
+            <authStyled.InputBox mode={mode}>
               <p>비밀번호</p>
               <input type="password" onChange={onPasswordHandler} />
-            </styled.InputBox>
+            </authStyled.InputBox>
 
             {warningMsg && (
-              <styled.WarningMsg>
+              <authStyled.Msg state={"warning"}>
                 가입되어 있지 않은 계정이거나,
                 <br />
                 이메일 또는 비밀번호가 일치하지 않습니다.
-              </styled.WarningMsg>
+              </authStyled.Msg>
             )}
 
-            <styled.btn type="submit">로그인</styled.btn>
+            <authStyled.btn type="submit">로그인</authStyled.btn>
           </form>
-        </styled.LoginformWrap>
+        </authStyled.LoginformWrap>
         <styled.RegisterBox>
           <Link href="/Register" as="/auth/register">
             <span>아직도 회원이 아니세요?</span>
             <span>회원가입 하기</span>
           </Link>
         </styled.RegisterBox>
-      </styled.LoginCon>
-    </styled.LoginWrap>
+      </authStyled.AuthCon>
+    </authStyled.AuthWrap>
   );
 };
 

@@ -14,6 +14,7 @@ const colors = {
   grayText: "#767676",
 
   warning: "#f21724",
+  success: "#12B886",
 
   lightTheme: {
     text: "#333",
@@ -34,7 +35,7 @@ const fonts = {
   size: {
     basicsDesktop: "15px",
     title: "1.5rem", // 22.5px
-    medium: "1.2rem", // 24px
+    medium: "1.2rem", // 18px
     small: ".86rem", // 12px
   },
 
