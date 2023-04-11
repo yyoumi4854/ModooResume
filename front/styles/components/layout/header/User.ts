@@ -10,9 +10,47 @@ export const UserCon = styled.div<{
   }
 `;
 
-export const profile = styled.img``;
+export const profileCon = styled.div`
+  position: relative;
+  & > button {
+    span:first-of-type {
+      font-weight: 700;
+    }
+    span:last-of-type {
+      color: ${({ theme }) => theme.colors.grayText};
+    }
+  }
+`;
 
-export const UserList = styled.ul<{ mode: "darkTheme" | "lightTheme" }>`
+export const UserList = styled.div<{ mode: "darkTheme" | "lightTheme" }>`
+  position: absolute;
+  right: 0;
+  top: 32px;
+  padding: 8px;
+  width: 176px;
+  border: 1px solid ${({ theme, mode }) => theme.colors[mode].border};
+  border-radius: 4px;
+  background: ${({ theme, mode }) => theme.colors[mode].bg};
+
+  ul li {
+    height: 48px;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+
+    & > * {
+      transition: all 0.2s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.main};
+      }
+    }
+  }
+`;
+
+export const AuthList = styled.ul<{ mode: "darkTheme" | "lightTheme" }>`
   ${({ theme }) => theme.common.flexCenter}
 
   li {

@@ -13,7 +13,7 @@ export const validateNickname = (nickname: string) => {
   return /^[가-힣\d\w]{2,8}$/.test(nickname);
 };
 
-// 아이디, 비밀번호: 4~10글자
+// 비밀번호: 4~10글자
 export const validatePassword = (value: string) => {
   return value.length >= 4 && value.length <= 10;
 };

@@ -16,7 +16,7 @@ import { register } from "../api/user";
 import * as authStyled from "../styles/components/Auth";
 import * as styled from "../styles/pages/Register";
 
-// 이메일, 닉네임, 비밀번호, 비밀번호 확인 -> 확인
+// 이메일, 닉네임, 비밀번호, 비밀번호 확인 -> 회원가입
 const Register = () => {
   const router = useRouter();
 
@@ -50,7 +50,7 @@ const Register = () => {
 
   const mutation = useMutation({
     mutationFn: register,
-    onSuccess: (data) => {
+    onSuccess: () => {
       router.replace("/Login", "/auth/register");
     },
   });
@@ -92,7 +92,7 @@ const Register = () => {
 
             {validateEmail(email) && (
               <authStyled.Msg state={"success"}>
-                알맞은 이메일 형식 입니다.
+                알맞은 이메일 형식입니다.
               </authStyled.Msg>
             )}
 
@@ -103,7 +103,7 @@ const Register = () => {
 
             {validateNickname(nickName) && (
               <authStyled.Msg state={"success"}>
-                알맞은 닉네임 형식 입니다.
+                알맞은 닉네임 형식입니다.
               </authStyled.Msg>
             )}
 
@@ -114,7 +114,7 @@ const Register = () => {
 
             {validatePassword(password) && (
               <authStyled.Msg state={"success"}>
-                알맞은 비밀번호 형식 입니다.
+                알맞은 비밀번호 형식입니다.
               </authStyled.Msg>
             )}
 
